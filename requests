@@ -1,0 +1,10 @@
+#!/bin/bash
+curl --location --request GET 'localhost:8085/covid/hello'
+printf "\n"
+curl --location --request GET 'localhost:8085/covid/download';
+printf "\n"
+curl --location --request GET 'localhost:8085/covid/process/full';
+printf "\n"
+curl --location --request GET 'localhost:8085/statistic/2020-10-14/poland';
+printf "\n"
+exec bash

@@ -1,0 +1,27 @@
+version: '3.3'
+services:
+  mysql-docker-container:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'covid'
+      MYSQL_USER: 'root'
+      MYSQL_PASSWORD: 'admin1!'
+      MYSQL_ROOT_PASSWORD: 'admin1!'
+    expose:
+      # Opens port 3306 on the container
+      - '3306'
+    volumes:
+      - /data/mysql-data
+  app-docker-container:
+    restart: on-failure
+    image: covid-app
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    depends_on:
+      - mysql-docker-container
+    ports:
+      - 8085:8085
+    volumes:
+      - /data/covid

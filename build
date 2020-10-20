@@ -1,0 +1,6 @@
+#!/bin/bash
+mvn clean
+mvn package -DskipTests
+docker build . -t covid-app
+docker-compose -f docker-prod-compose.yml up -d
+exec bash
